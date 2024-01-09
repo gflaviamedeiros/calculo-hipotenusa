@@ -1,2 +1,2 @@
-# calculo-hipotenusa
-Um programa simples que atribui valores pseudoaleatórios para catetos de um triângulo imaginário e calcula sua hipotenusa.
+# ERADOR DE TRIÂNGULOS IMAGINÁRIOS E CÁLCULO DE HIPOTENUSA
+Um script simples em linha de comando que proporciona uma interação com o usuário, permitindo que ele insira manualmente os valores dos catetos de um triângulo e o programa realiza o cálculo da hipotenusa. Além disso, tem a funcionalidade de gerar valores pseudoaleatórios para os catetos de um triângulo imaginário e calcular sua hipotenusa.
