@@ -1,50 +1,100 @@
-/*
-	esse é um programa que calcula a hipotenusa de um triangulo
-	apartir de números pseudoaleatórios atribuidos a seus catetos.
-	co - cateto oposto, o2 - cateto oposto ao quadrado;
-	ca - cateto adjacente, a2 - cateto adjacente ao quadrado.
-
-	além disso, foi implementado um método para que esse processo possa
-	ser repetido quantas vezes for determinado, através de uma verificação if.
-	a determinação de vezes está em uma constante chamada fimCont.
-	
-	para usar isso, deve tirar os comentários abaixo, é óbvio.
-	main(args) é chamado para repetir o algoritmo novamente até a condição if ser falsa.
-*/
+import java.util.Scanner;
 import java.util.Random;
+
 public class Hipotenusa{
-	/*
-	private static int cont = 0;
-	private static int fimCont = 5;
-	*/
-	public static void main(String[] args){
-		final int max_c = 100;
-		int co = new Random().nextInt(max_c);
-		int ca =new Random().nextInt(max_c);
-		int o2 = (int) Math.pow(co, 2); int a2 = (int) Math.pow(ca, 2);
-		float h2 = (float) (o2 + a2);
-		
-		if (co == 0 || ca == 0) {
-            main(args); //se um dos 2 catetos for igual a 0, não existe um triangulo.
-        }
 
-		float h1 = (float) Math.sqrt(h2);
+	public static void main(String[] args) throws java.io.IOException{
+		Scanner scanner = new Scanner(System.in);
+		int catetoOposto, catetoAdjacente, cOposto2, cAdjacente2, valorMaximoTriangulo, maiorUnidadeMedida, opcao, verificarCatetos, quantidadeTriangulos;
+		float hipotenusa, hipotenusa2;
 
-		System.out.println("H^2 = CO^2 + CA^2:");
-		System.out.printf("H^2 = %d^2 + %d^2\n", co, ca);
-		System.out.printf("H^2 = %d + %d\n", o2, a2);
-		System.out.printf("H^2 = %d + %d = %.2f\n", o2, a2, h2);
-		System.out.printf("H = %.2f\n", h1);
+		System.out.printf(" gerar triangulos imaginários aleatoriamente >> 1 \n inserir catetos para calculo de hipotenusa  >> 2 \n\n >> ");
+		opcao = scanner.nextInt();
 
-	/*	contar();
+	  	switch(opcao){
+		  	case 1:
+		  		System.out.print("você deseja gerar catetos com no máximo quantas unidades de medida? ");
+		  		maiorUnidadeMedida = scanner.nextInt();
+		  		System.out.print("qual a quantidade de triangulos imaginários que você deseja criar? ");
+		  		valorMaximoTriangulo = scanner.nextInt();
 
-		if (cont<fimCont) {
-			System.out.printf("\n\n\n");
-			main(args); // chama o método principal para refazer o processo.
-		}*/		
+		  		if(maiorUnidadeMedida<1 | valorMaximoTriangulo<1){
+		  			System.out.println("insira valores maiores ou iguais a 1.");
+		  			main(args);
+		  		}
+		  		
+		  		quantidadeTriangulos = 0;
+		  		while(quantidadeTriangulos<valorMaximoTriangulo){
+			  		verificarCatetos = 0;
+
+			  		while(verificarCatetos == 0){
+				  		catetoOposto = new Random().nextInt(maiorUnidadeMedida);
+				  		catetoAdjacente = new Random().nextInt(maiorUnidadeMedida);
+				  		
+				  		if (catetoOposto > 0 & catetoAdjacente > 0) {
+				  			cOposto2 = (int) Math.pow(catetoOposto, 2);
+		  					cAdjacente2 = (int) Math.pow(catetoAdjacente, 2);
+					        hipotenusa2 = (float) (cOposto2 + cAdjacente2);
+					        hipotenusa = (float) Math.sqrt(hipotenusa2);
+
+							System.out.println("\nH^2 = CO^2 + CA^2:");
+							System.out.printf("H^2 = %d^2 + %d^2\n", catetoOposto, catetoAdjacente);
+							System.out.printf("H^2 = %d + %d\n", cOposto2, cAdjacente2);
+							System.out.printf("H^2 = %d + %d = %.2f\n", cOposto2, cAdjacente2, hipotenusa2);
+							System.out.printf("H = %.2f\n\n", hipotenusa);
+							verificarCatetos++;
+						}
+					}
+					quantidadeTriangulos++;
+				}
+				catetoOposto=catetoAdjacente=cOposto2=cAdjacente2=0;
+				break;
+
+		  	case 2:
+		  		System.out.printf("\nqual a quantidade de triangulos imaginários que você deseja criar? ");
+		  		valorMaximoTriangulo = scanner.nextInt();
+
+		  		if(valorMaximoTriangulo<1){
+		  			System.out.printf("\ninsira valores maiores ou iguais a 1.");
+		  			main(args);
+		  		}
+
+		  		quantidadeTriangulos = 0;
+			  	while(quantidadeTriangulos<valorMaximoTriangulo){
+					verificarCatetos = 0;
+					while(verificarCatetos == 0){
+						System.out.printf("\n\nCATETO OPOSTO: ");
+				  		catetoOposto = scanner.nextInt();
+				  		System.out.printf("\nCATETO ADJACENTE: ");
+			  			catetoAdjacente = scanner.nextInt();
+				  		if (catetoOposto > 0 & catetoAdjacente > 0) {
+				  			cOposto2 = (int) Math.pow(catetoOposto, 2);
+							cAdjacente2 = (int) Math.pow(catetoAdjacente, 2);
+					        hipotenusa2 = (float) (cOposto2 + cAdjacente2);
+					        hipotenusa = (float) Math.sqrt(hipotenusa2);
+
+							System.out.printf("\n\nH^2 = CO^2 + CA^2:");
+							System.out.printf("H^2 = %d^2 + %d^2\n", catetoOposto, catetoAdjacente);
+							System.out.printf("H^2 = %d + %d\n", cOposto2, cAdjacente2);
+							System.out.printf("H^2 = %d + %d = %.2f\n", cOposto2, cAdjacente2, hipotenusa2);
+							System.out.printf("H = %.2f\n\n", hipotenusa);
+							verificarCatetos++;
+							quantidadeTriangulos++;
+						} else {
+							System.out.printf("\nvocê inseriu um valor inválido, tente novamente.\n\n\n");
+						}
+					}
+				}
+				break;
+
+		  	default:
+		  		System.out.println("o valor informado é inválido.");
+		  		System.out.println("você deseja tentar novamente?");
+		  		System.out.printf("TENTAR NOVAMENTE >> 0 \nENCERRAR >> Nº QUALQUER\n>>>>>>>>>>>>>>>>>>>>>>>");
+		  		opcao = scanner.nextInt();
+		  		if(opcao==0){
+		  			main(args);
+		  		}
+	  	}
 	}
-	/*
-	public static void contar() {
-        cont++;
-    }*/
 }
